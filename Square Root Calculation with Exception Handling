@@ -1,0 +1,30 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class SquareRootCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter a number: ");
+            if (!scanner.hasNextDouble()) {
+                throw new InputMismatchException("Invalid input. Please enter a numeric value.");
+            }
+
+            double number = scanner.nextDouble();
+
+            if (number < 0) {
+                throw new IllegalArgumentException("Cannot calculate the square root of a negative number.");
+            }
+
+            double result = Math.sqrt(number);
+            System.out.printf("Square root of %.2f is: %.2f%n", number, result);
+        } catch (InputMismatchException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}
